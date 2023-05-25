@@ -15,11 +15,12 @@ function TodoForm({
   data = { title: "", description: "", priority: 1 },
 }) {
   const [formData, setFormData] = useState(data);
+  console.log('handleSave func =>', handleSave);
 
   /** Update form input. */
   function handleChange(evt) {
     const { name, value } = evt.target;
-    setFormData((currData) => ({
+    setFormData(currData => ({
       ...currData,
       [name]: value,
     }));
@@ -31,6 +32,7 @@ function TodoForm({
     handleSave({ ...formData, id: uuid() });
   }
 
+  // FIXME: we originally had data.title and was not allowing us to type into input field
   return (
     <form className="NewTodoForm" onSubmit={handleSubmit}>
       <div className="mb-3">
@@ -40,7 +42,7 @@ function TodoForm({
           className="form-control"
           placeholder="Title"
           onChange={handleChange}
-          value={data.title}
+          value={formData.title}
           aria-label="Title"
         />
       </div>
@@ -52,7 +54,7 @@ function TodoForm({
           className="form-control"
           placeholder="Description"
           onChange={handleChange}
-          value={data.description}
+          value={formData.description}
           aria-label="Description"
         />
       </div>
@@ -65,7 +67,7 @@ function TodoForm({
           <select
             id="newTodo-priority"
             name="priority"
-            value="FIXME"
+            value={formData.priority}
             onChange={handleChange}
             className="form-control form-control-sm d-inline-flex"
           >

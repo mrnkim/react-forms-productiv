@@ -21,15 +21,16 @@ function TodoApp({ initialTodos = [] }) {
 
   /** add a new todo to list */
   function create(newTodo) {
-    setTodos((currTodos) => [...currTodos, newTodo]);
+    setTodos((currTodos) => [...currTodos, {...newTodo, id: uuid()}]);
   }
 
   //TODO: updatedTodo - is it a todo object?
   /** update a todo with updatedTodo */
   function update(updatedTodo) {
-    setTodos((currTodos) =>
-      currTodos.map((todo) => (todo.id === updatedTodo.id ? updatedTodo : todo))
-    );
+    console.log('updatedTodo =>', updatedTodo);
+    console.log('todos =>', todos);
+    setTodos(currTodos =>
+      currTodos.map(todo => todo.id === updatedTodo.id ? updatedTodo : todo));
   }
 
   /** delete a todo by id */
@@ -41,10 +42,10 @@ function TodoApp({ initialTodos = [] }) {
     <main className="TodoApp">
       <div className="row">
         <div className="col-md-6">
-          {todos && (
+          {todos.length !== 0 && (
             <EditableTodoList todos={todos} update={update} remove={remove} />
           )}
-          {!todos && <span className="text-muted">You have no todos.</span>}
+          {todos.length === 0 && <span className="text-muted">You have no todos.</span>}
         </div>
 
         <div className="col-md-6">
