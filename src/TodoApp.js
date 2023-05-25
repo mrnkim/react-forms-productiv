@@ -3,6 +3,7 @@ import { v4 as uuid } from "uuid";
 
 import TopTodo from "./TopTodo";
 import EditableTodoList from "./EditableTodoList";
+import TodoForm from "./TodoForm";
 
 /** App for managing a todo list.
  *
@@ -15,7 +16,7 @@ import EditableTodoList from "./EditableTodoList";
  * App -> TodoApp -> { TodoForm, EditableTodoList }
  */
 
-function TodoApp({ initialTodos=[] }) {
+function TodoApp({ initialTodos = [] }) {
   const [todos, setTodos] = useState(initialTodos);
 
   /** add a new todo to list */
@@ -40,12 +41,10 @@ function TodoApp({ initialTodos=[] }) {
     <main className="TodoApp">
       <div className="row">
         <div className="col-md-6">
-          {todos && 
-          <EditableTodoList todos={todos} update={update} remove={remove}/>
-          }
-          {!todos && 
-          <span className="text-muted">You have no todos.</span>
-          }
+          {todos && (
+            <EditableTodoList todos={todos} update={update} remove={remove} />
+          )}
+          {!todos && <span className="text-muted">You have no todos.</span>}
         </div>
 
         <div className="col-md-6">
@@ -56,7 +55,7 @@ function TodoApp({ initialTodos=[] }) {
           </section>
           <section>
             <h3 className="mb-3">Add Nü</h3>
-            FIXME
+            <TodoForm />
           </section>
         </div>
       </div>
