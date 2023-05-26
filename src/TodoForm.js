@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { v4 as uuid } from "uuid";
 
 /** Form for adding.
  *
@@ -15,12 +14,11 @@ function TodoForm({
   data = { title: "", description: "", priority: 1 },
 }) {
   const [formData, setFormData] = useState(data);
-  console.log('handleSave func =>', handleSave);
 
   /** Update form input. */
   function handleChange(evt) {
     const { name, value } = evt.target;
-    setFormData(currData => ({
+    setFormData((currData) => ({
       ...currData,
       [name]: value,
     }));
@@ -29,7 +27,8 @@ function TodoForm({
   /** Call parent function and clear form. */
   function handleSubmit(evt) {
     evt.preventDefault();
-    handleSave({ ...formData, id: uuid() });
+    handleSave({ ...formData });
+    setFormData(data);
   }
 
   // FIXME: we originally had data.title and was not allowing us to type into input field
