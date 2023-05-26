@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Quote from "./Quote";
 import axios from "axios";
+import "./QuoteHandler.css";
 const QUOTE_URL = "https://inspo-quotes-api.herokuapp.com/quotes";
 
 function QuoteHandler() {
@@ -12,7 +13,7 @@ function QuoteHandler() {
     setQuote(randomQuote.data.quote);
   }
 
-  function handleClick() {
+  function showQuote() {
     setIsButtonClicked(true);
     setQuote(getQuote);
   }
@@ -21,11 +22,15 @@ function QuoteHandler() {
     <div>
       <Quote quote={quote} />
       {!isButtonClicked && (
-        <button onClick={handleClick}>
-          Click here for an inspirational quote!
+        <button className="quoteButton" onClick={showQuote}>
+          Click here for an inspirational quøte!
         </button>
       )}
-      {isButtonClicked && <button onClick={handleClick}>Nu Quote</button>}
+      {isButtonClicked && (
+        <button className="quoteButton" onClick={showQuote}>
+          Nü Quøte
+        </button>
+      )}
     </div>
   );
 }
