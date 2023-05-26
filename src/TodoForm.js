@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { v4 as uuid } from "uuid";
 
 /** Form for adding.
  *
@@ -11,9 +12,9 @@ import React, { useState } from "react";
 
 function TodoForm({
   handleSave,
-  data = { title: "", description: "", priority: 1 },
+  initialFormData = {title: '', description: '', priority: 1 },
 }) {
-  const [formData, setFormData] = useState(data);
+  const [formData, setFormData] = useState(initialFormData);
 
   /** Update form input. */
   function handleChange(evt) {
@@ -23,15 +24,14 @@ function TodoForm({
       [name]: value,
     }));
   }
-
+  
   /** Call parent function and clear form. */
   function handleSubmit(evt) {
     evt.preventDefault();
     handleSave({ ...formData });
-    setFormData(data);
+    setFormData(initialFormData);
   }
-
-  // FIXME: we originally had data.title and was not allowing us to type into input field
+  
   return (
     <form className="NewTodoForm" onSubmit={handleSubmit}>
       <div className="mb-3">

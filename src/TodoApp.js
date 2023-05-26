@@ -24,15 +24,11 @@ function TodoApp({ initialTodos = [] }) {
     setTodos((currTodos) => [...currTodos, { ...newTodo, id: uuid() }]);
   }
 
-  //TODO: updatedTodo - is it a todo object?
   /** update a todo with updatedTodo */
   function update(updatedTodo) {
-    console.log("updatedTodo =>", updatedTodo);
-    console.log("todos =>", todos);
     setTodos((currTodos) =>
       currTodos.map((todo) => (todo.id === updatedTodo.id ? updatedTodo : todo))
     );
-    console.log("todos =>", todos);
   }
 
   /** delete a todo by id */

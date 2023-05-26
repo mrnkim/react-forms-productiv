@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Todo from "./Todo";
 import TodoForm from "./TodoForm";
+// import { click } from "@testing-library/user-event/dist/types/convenience";
 
 /** Show editable todo item.
  *
@@ -28,7 +29,6 @@ function EditableTodo({ todo, update, remove }) {
 
   /** Edit form saved; toggle isEditing and update in ancestor. */
   function handleSave(formData) {
-    console.log("form data =>", formData);
     toggleEdit();
     update(formData);
   }
@@ -36,7 +36,7 @@ function EditableTodo({ todo, update, remove }) {
   return (
     <div className="EditableTodo">
       {isEditing && (
-        <TodoForm handleSave={handleSave} formData={initialFormData} />
+        <TodoForm handleSave={handleSave} initialFormData={initialFormData} />
       )}
       {!isEditing && (
         <div className="mb-3">
